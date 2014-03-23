@@ -1,0 +1,40 @@
+#################################
+# Compiled source               #
+#################################
+bin/
+build/
+gen/
+out/
+*.apk
+*.ap_
+*.class
+*.dex
+
+#################################
+# Android/Gradle files          #
+#################################
+.gradle/
+local.properties
+
+#################################
+# IDE generated files           #
+#################################
+.idea/dictionaries/
+.idea/inspectionProfiles/
+.idea/workspace.xml
+.idea/tasks.xml
+*.iws
+
+#################################
+# Logs and temp files           #
+#################################
+*.log
+*.swp
+*~
+
+#################################
+# OS generated files            #
+#################################
+Thumbs.db
+.directory
+.DS_Store
