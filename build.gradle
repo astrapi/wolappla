@@ -1,1 +1,4 @@
 // top-level build file for 'wolappla'
+
+ext.compileSdkVersion = 19
+ext.buildToolsVersion = "19.0.3"
