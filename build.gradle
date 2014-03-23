@@ -2,3 +2,12 @@
 
 ext.compileSdkVersion = 19
 ext.buildToolsVersion = "19.0.3"
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:0.9.1'
+  }
+}
