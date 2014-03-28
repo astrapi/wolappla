@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Wolappla.Theme.Base" parent="android:Theme.Holo.Light.DarkActionBar">
+  </style>
+
+  <style name="Wollapla.Theme" parent="Wolappla.Theme.Base">
+    <item name="android:actionBarStyle">@style/Wolappla.Theme.ActionBar</item>
+    <item name="android:windowBackground">@color/background</item>
+  </style>
+
+  <style name="Wolappla.Theme.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/ab_background</item>
+    <item name="android:titleTextStyle">@style/Wolappla.Theme.ActionBar.Text</item>
+  </style>
+
+  <style name="Wolappla.Theme.ActionBar.Text" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/ab_foreground</item>
+  </style>
+</resources>
