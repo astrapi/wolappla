@@ -6,4 +6,4 @@ Wolappla follows the [Semantic Versioning](http://semver.org) for its releases: 
 * **Minor version** when you add functionality in a backwards-compatible manner;
 * **Patch version** when you make backwards-compatible bug fixes.
 
-Additional labels for pre-release and build metadata are available as extendsions to the MAJOR.MINOR.PATCH format.
+Additional labels for pre-release and build metadata are available as extendsions to the `MAJOR.MINOR.PATCH` format.
