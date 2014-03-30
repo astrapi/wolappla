@@ -1,1 +1,1 @@
-include ':main'
+include ':core', ':main'
