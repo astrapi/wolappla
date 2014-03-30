@@ -17,7 +17,7 @@ public class MagicPacketTest {
   }
 
   @Test
-  public void getSynchronizationStream_lengthShouldBeSix() {
+  public void getSynchronizationStream_arrayLengthShouldBeSix() {
     MagicPacket magicPacket = new MagicPacket();
     byte[] stream = magicPacket.getSynchronizationStream();
 
@@ -25,7 +25,7 @@ public class MagicPacketTest {
   }
 
   @Test
-  public void getSynchronizationStream_shouldBeSixBytesOf0xff() {
+  public void getSynchronizationStream_shouldContainSixBytesOf0xFF() {
     MagicPacket magicPacket = new MagicPacket();
     byte[] actualStream = magicPacket.getSynchronizationStream();
     byte[] expectedStream = {(byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff};
