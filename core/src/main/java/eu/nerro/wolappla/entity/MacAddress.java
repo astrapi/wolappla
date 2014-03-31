@@ -67,12 +67,12 @@ public final class MacAddress {
     StringBuilder sb = new StringBuilder();
     String macAddress = macBytesToHex(address);
 
-    int characterNumber = delimiter.getCharacterNumber();
-    for (int i = 0; i < macAddress.length() - characterNumber; i = i + characterNumber) {
-      sb.append(macAddress.substring(i, i + characterNumber));
+    int groupLength = delimiter.getGroupLength();
+    for (int i = 0; i < macAddress.length() - groupLength; i = i + groupLength) {
+      sb.append(macAddress.substring(i, i + groupLength));
       sb.append(delimiter.getDelimiterCharacter());
     }
-    sb.append(macAddress.substring(macAddress.length() - characterNumber, macAddress.length()));
+    sb.append(macAddress.substring(macAddress.length() - groupLength, macAddress.length()));
 
     return sb.toString();
   }
@@ -96,19 +96,19 @@ public final class MacAddress {
     NONE("", 1);
 
     private final String delimiterCharacter;
-    private final int characterNumber;
+    private final int groupLength;
 
-    private Delimiter(String delimiterCharacter, int characterNumber) {
+    private Delimiter(String delimiterCharacter, int groupLength) {
       this.delimiterCharacter = delimiterCharacter;
-      this.characterNumber = characterNumber;
+      this.groupLength = groupLength;
     }
 
     public String getDelimiterCharacter() {
       return delimiterCharacter;
     }
 
-    public int getCharacterNumber() {
-      return characterNumber;
+    public int getGroupLength() {
+      return groupLength;
     }
   }
 }
