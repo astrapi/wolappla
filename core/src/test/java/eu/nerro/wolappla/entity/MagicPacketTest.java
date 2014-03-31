@@ -17,7 +17,7 @@ public class MagicPacketTest {
   }
 
   @Test
-  public void getSynchronizationStream_arrayLengthShouldBeSix() {
+  public void getSynchronizationStream_arrayLengthShouldBe6() {
     MagicPacket magicPacket = new MagicPacket();
     byte[] stream = magicPacket.getSynchronizationStream();
 
