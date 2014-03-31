@@ -28,7 +28,7 @@ public class MagicPacketTest {
   public void getSynchronizationStream_shouldContainSixBytesOf0xFF() {
     MagicPacket magicPacket = new MagicPacket();
     byte[] actualStream = magicPacket.getSynchronizationStream();
-    byte[] expectedStream = {(byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff, (byte) 0xff};
+    byte[] expectedStream = { -1, -1, -1, -1, -1, -1 };
 
     assertThat(actualStream, equalTo(expectedStream));
   }

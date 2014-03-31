@@ -26,12 +26,9 @@ package eu.nerro.wolappla.entity;
  * </ul>
  */
 public class MagicPacket {
-  private final byte[] synchronizationStream = new byte[6];
+  private final byte[] synchronizationStream = new byte[]{ -1, -1, -1, -1, -1, -1 };
 
   public MagicPacket() {
-    for (int i = 0; i < synchronizationStream.length; i++) {
-      synchronizationStream[i] = (byte) 0xff;
-    }
   }
 
   public byte[] getSynchronizationStream() {
