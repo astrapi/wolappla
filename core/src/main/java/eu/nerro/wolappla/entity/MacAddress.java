@@ -8,6 +8,7 @@ import java.util.Arrays;
  */
 public final class MacAddress {
   private static final int BYTE_ARRAY_LENGTH = 6;
+  private static final String EUI_48 = "^(?i)(?:[0-9a-f]{2}[-:]?){5}[0-9a-f]{2}|(?:[0-9a-f]{4}\\.?){2}[0-9a-f]{4}$";
 
   private final byte[] address;
 
@@ -26,13 +27,67 @@ public final class MacAddress {
     return new MacAddress(address);
   }
 
+  public static MacAddress valueOf(CharSequence address) {
+    if (address == null) {
+      throw new IllegalArgumentException("MAC address cannot be null.");
+    }
+
+    String addressAsString = address.toString();
+    if (!addressAsString.matches(EUI_48)) {
+      throw new IllegalArgumentException("Input string is not a valid MAC address.");
+    }
+
+    String cleanMacAddress = addressAsString.replaceAll("(?i)[^0-9a-f]", "");
+    byte[] macBytes = new byte[BYTE_ARRAY_LENGTH];
+    for (int i = 0; i < macBytes.length; i++) {
+      macBytes[i] = (byte) Integer.parseInt(cleanMacAddress.substring(2 * i, 2 * i + 2), 16);
+    }
+
+    return new MacAddress(macBytes);
+  }
+
+  public static boolean validate(String address) {
+    if (address == null) {
+      throw new IllegalArgumentException("Input string cannot be null.");
+    }
+
+    return address.matches(EUI_48);
+  }
+
+  public byte[] getBytes() {
+    return Arrays.copyOf(address, BYTE_ARRAY_LENGTH);
+  }
+
   @Override
   public String toString() {
-    return convertToString(Delimiter.HYPHEN);
+    return convertToString(Delimiter.COLON);
   }
 
   public String convertToString(Delimiter delimiter) {
-    return "";
+    StringBuilder sb = new StringBuilder();
+    String macAddress = macBytesToHex(address);
+
+    int characterNumber = delimiter.getCharacterNumber();
+    for (int i = 0; i < macAddress.length() - characterNumber; i = i + characterNumber) {
+      sb.append(macAddress.substring(i, i + characterNumber));
+      sb.append(delimiter.getDelimiterCharacter());
+    }
+    sb.append(macAddress.substring(macAddress.length() - characterNumber, macAddress.length()));
+
+    return sb.toString();
+  }
+
+  private String macBytesToHex(byte[] macBytes) {
+    StringBuilder sb = new StringBuilder();
+    for (byte b : macBytes) {
+      int value = b & 0xff;
+      if (value < 16) {
+        sb.append("0");
+      }
+      sb.append(Integer.toHexString(value));
+    }
+
+    return sb.toString();
   }
 
   public enum Delimiter {
