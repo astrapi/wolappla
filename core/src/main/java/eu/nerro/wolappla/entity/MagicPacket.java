@@ -26,12 +26,27 @@ package eu.nerro.wolappla.entity;
  * </ul>
  */
 public class MagicPacket {
-  private final byte[] synchronizationStream = new byte[]{ -1, -1, -1, -1, -1, -1 };
+  private static final int SYNCHRONIZATION_STREAM_LENGTH = 6;
+  private final byte[] frame = new byte[102];
 
-  public MagicPacket() {
+  public MagicPacket(MacAddress macAddress) {
+    byte[] macBytes = macAddress.getBytes();
+
+    for (int i = 0; i < SYNCHRONIZATION_STREAM_LENGTH; i++) {
+      frame[i] = (byte) 0xff;
+    }
+
+    for (int i = SYNCHRONIZATION_STREAM_LENGTH; i < frame.length; i += macBytes.length) {
+      System.arraycopy(macBytes, 0, frame, i, macBytes.length);
+    }
   }
 
-  public byte[] getSynchronizationStream() {
-    return synchronizationStream;
+  /**
+   * Returns the broadcast frame that can be sent to turn on computers through wake-on-lan technology.
+   *
+   * @return the magic packet as byte array.
+   */
+  public byte[] getMagicBytes() {
+    return frame;
   }
 }

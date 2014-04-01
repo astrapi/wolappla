@@ -2,34 +2,56 @@ package eu.nerro.wolappla.entity;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 public class MagicPacketTest {
   @Test
-  public void getSynchronizationStream_shouldNotBeNull() {
-    MagicPacket magicPacket = new MagicPacket();
-    byte[] synchronizationStream = magicPacket.getSynchronizationStream();
+  public void synchronizationStreamShouldContainSixBytesOf0xFF() {
+    MagicPacket magicPacket = new MagicPacket(MacAddress.valueOf("11-22-33-44-55-66"));
+    byte[] magicBytes = magicPacket.getMagicBytes();
+    byte[] actualSynchronizationStream = Arrays.copyOfRange(magicBytes, 0, 6);
+    byte[] expectedSynchronizationStream = { -1, -1, -1, -1, -1, -1 };
 
-    assertThat(synchronizationStream, is(notNullValue()));
+    assertThat(actualSynchronizationStream, equalTo(expectedSynchronizationStream));
   }
 
   @Test
-  public void getSynchronizationStream_arrayLengthShouldBe6() {
-    MagicPacket magicPacket = new MagicPacket();
-    byte[] stream = magicPacket.getSynchronizationStream();
+  public void getMagicBytes_arrayLengthShouldBe102() {
+    MagicPacket magicPacket = new MagicPacket(MacAddress.valueOf("11-22-33-44-55-66"));
+    byte[] magicBytes = magicPacket.getMagicBytes();
 
-    assertThat(stream.length, is(6));
+    assertThat(magicBytes.length, is(102));
   }
 
   @Test
-  public void getSynchronizationStream_shouldContainSixBytesOf0xFF() {
-    MagicPacket magicPacket = new MagicPacket();
-    byte[] actualStream = magicPacket.getSynchronizationStream();
-    byte[] expectedStream = { -1, -1, -1, -1, -1, -1 };
+  public void getMagicBytes_shouldReturnMagicPacketAsByteArray() {
+    MagicPacket magicPacket = new MagicPacket(MacAddress.valueOf("11-22-33-44-55-66"));
+    byte[] actualMagicBytes = magicPacket.getMagicBytes();
+    byte[] expectedMagicBytes = {
+        -1, -1, -1, -1, -1, -1,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102,
+        17, 34, 51, 68, 85, 102
+    };
 
-    assertThat(actualStream, equalTo(expectedStream));
+    assertThat(actualMagicBytes.length, equalTo(expectedMagicBytes.length));
+    assertThat(actualMagicBytes, equalTo(expectedMagicBytes));
   }
 }
