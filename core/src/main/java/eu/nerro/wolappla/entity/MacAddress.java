@@ -64,7 +64,7 @@ public final class MacAddress {
   }
 
   public String convertToString(Delimiter delimiter) {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder sb = new StringBuilder(17);
     String macAddress = macBytesToHex(address);
 
     int groupLength = delimiter.getGroupLength();
@@ -78,7 +78,7 @@ public final class MacAddress {
   }
 
   private String macBytesToHex(byte[] macBytes) {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder sb = new StringBuilder(12);
     for (byte b : macBytes) {
       int value = b & 0xff;
       if (value < 16) {
