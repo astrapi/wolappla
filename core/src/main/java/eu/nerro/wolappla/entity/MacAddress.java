@@ -3,8 +3,8 @@ package eu.nerro.wolappla.entity;
 import java.util.Arrays;
 
 /**
- * This class represents a MAC address according to the IEEE EUI-48 rule. <p> The 48-bit address space contains
- * potentially 2<sup>48</sup> or 281,474,976,710,656 possible MAC addresses. </p>
+ * This class represents a MAC address according to the IEEE EUI-48 rule. The 48-bit address space contains
+ * potentially 2<sup>48</sup> or 281,474,976,710,656 possible MAC addresses.
  */
 public final class MacAddress {
   private static final int BYTE_ARRAY_LENGTH = 6;
@@ -16,6 +16,17 @@ public final class MacAddress {
     this.address = Arrays.copyOf(address, BYTE_ARRAY_LENGTH);
   }
 
+  /**
+   * Returns the MAC address representation of the <code>byte</code> array argument. The contents of the byte array
+   * are copied; subsequent modification of the byte array does not affect the newly created MAC address.
+   *
+   * @param address a <code>byte</code> array.
+   *
+   * @return a newly allocated MAC address representing the same sequence of bytes contained in the byte array argument.
+   *
+   * @throws IllegalArgumentException If a byte array is <code>null</code> or
+   *                                  its length is not {@value #BYTE_ARRAY_LENGTH}.
+   */
   public static MacAddress valueOf(byte[] address) {
     if (address == null) {
       throw new IllegalArgumentException("MAC address bytes cannot be null.");
@@ -27,6 +38,17 @@ public final class MacAddress {
     return new MacAddress(address);
   }
 
+  /**
+   * Returns the MAC address representation of the <code>CharSequence</code> argument. The contents of the char sequence
+   * are copied; subsequent modification of the char sequence does not affect the newly created MAC address.
+   *
+   * @param address a char sequence.
+   *
+   * @return a newly allocated MAC address representing the same sequence of chars contained in the char values argument.
+   *
+   * @throws IllegalArgumentException If a char sequence is <code>null</code> or
+   *                                  does not match {@link MacAddress#EUI_48} pattern.
+   */
   public static MacAddress valueOf(CharSequence address) {
     if (address == null) {
       throw new IllegalArgumentException("MAC address cannot be null.");
@@ -46,6 +68,15 @@ public final class MacAddress {
     return new MacAddress(macBytes);
   }
 
+  /**
+   * Validates the given MAC address against {@link MacAddress#EUI_48} pattern.
+   *
+   * @param address a MAC address
+   *
+   * @return <code>true</code> if MAC address is valid; otherwise <code>false</code>.
+   *
+   * @throws IllegalArgumentException If an MAC address is <code>null</code>.
+   */
   public static boolean validate(String address) {
     if (address == null) {
       throw new IllegalArgumentException("Input string cannot be null.");
@@ -54,6 +85,11 @@ public final class MacAddress {
     return address.matches(EUI_48);
   }
 
+  /**
+   * Returns a MAC address representation as byte array.
+   *
+   * @return a MAC address as byte array.
+   */
   public byte[] getBytes() {
     return Arrays.copyOf(address, BYTE_ARRAY_LENGTH);
   }
