@@ -106,4 +106,24 @@ public class MacAddressTest {
 
     assertThat(validationFinding, is(false));
   }
+
+  @Test
+  public void equals_shouldBeEqualIfAddressesAreSame() {
+    MacAddress firstAddress = MacAddress.valueOf("11-22-33-44-55-66");
+    MacAddress secondAddress = MacAddress.valueOf("11-22-33-44-55-66");
+
+    boolean adressesAreSame = firstAddress.equals(secondAddress);
+
+    assertThat(adressesAreSame, is(true));
+  }
+
+  @Test
+  public void equals_shouldBeNotEqualIfAdressesAreNotSame() {
+    MacAddress firstAddress = MacAddress.valueOf("11-22-33-44-55-66");
+    MacAddress secondAddress = MacAddress.valueOf("66-55-44-33-22-11");
+
+    boolean addressesAreSame = firstAddress.equals(secondAddress);
+
+    assertThat(addressesAreSame, is(false));
+  }
 }

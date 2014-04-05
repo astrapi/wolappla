@@ -90,6 +90,28 @@ public final class MacAddress {
     return sb.toString();
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof MacAddress)) {
+      return false;
+    }
+
+    MacAddress ohter = (MacAddress) obj;
+
+    return Arrays.equals(address, ohter.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Arrays.hashCode(address);
+  }
+
   public enum Delimiter {
     COLON(":", 2),
     HYPHEN("-", 2),
