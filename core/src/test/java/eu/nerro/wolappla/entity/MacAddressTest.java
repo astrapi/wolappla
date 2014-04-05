@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class MacAddressTest {
@@ -58,6 +59,17 @@ public class MacAddressTest {
     byte[] expectedMacBytes = { 26, 43, 60, 77, 94, -1 };
 
     assertThat(actualMacBytes, equalTo(expectedMacBytes));
+  }
+
+  @Test
+  public void valueOf_shouldAlwaysCreateNewArrayInternally() {
+    byte[] originMacBytes = { 26, 43, 60, 77, 94, -1 };
+    byte[] actualMacBytes = MacAddress.valueOf(originMacBytes).getBytes();
+    for (int i = 0; i < originMacBytes.length; i++) {
+      originMacBytes[i] = 0;
+    }
+
+    assertThat(actualMacBytes, not(equalTo(originMacBytes)));
   }
 
   @Test
