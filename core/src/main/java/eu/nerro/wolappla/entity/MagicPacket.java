@@ -44,7 +44,7 @@ public class MagicPacket {
   /**
    * Returns the broadcast frame that can be sent to turn on computers through wake-on-lan technology.
    *
-   * @return the magic packet as byte array.
+   * @return a magic packet as byte array.
    */
   public byte[] getMagicBytes() {
     return frame;
