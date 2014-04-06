@@ -5,5 +5,4 @@ public class Device {
   private String macAddress;
   private String ipAddress;
   private int port;
-  private String ssid;
 }
