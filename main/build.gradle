@@ -2,6 +2,7 @@ apply plugin: 'android'
 
 dependencies {
   compile project(':core')
+  compile 'com.android.support:support-v4:19.1.0'
 }
 
 android {
