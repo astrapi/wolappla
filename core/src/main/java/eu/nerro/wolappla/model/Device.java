@@ -1,8 +1,8 @@
 package eu.nerro.wolappla.model;
 
 public class Device {
-  private String name;
-  private String macAddress;
-  private String ipAddress;
-  private int port;
+  public String name;
+  public String macAddress;
+  public String ipAddress;
+  public int port;
 }
