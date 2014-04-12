@@ -38,4 +38,12 @@ public class LogUtils {
       Log.d(tag, message, cause);
     }
   }
+
+  public static void LOGW(final String tag, String message) {
+    Log.w(tag, message);
+  }
+
+  public static void LOGW(final String tag, String message, Throwable cause) {
+    Log.w(tag, message, cause);
+  }
 }
