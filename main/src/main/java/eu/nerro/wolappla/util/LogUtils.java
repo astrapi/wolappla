@@ -39,6 +39,18 @@ public class LogUtils {
     }
   }
 
+  public static void LOGV(final String tag, String message) {
+    if (BuildConfig.DEBUG || Log.isLoggable(tag, Log.VERBOSE)) {
+      Log.v(tag, message);
+    }
+  }
+
+  public static void LOGV(final String tag, String message, Throwable cause) {
+    if (BuildConfig.DEBUG || Log.isLoggable(tag, Log.VERBOSE)) {
+      Log.v(tag, message, cause);
+    }
+  }
+
   public static void LOGW(final String tag, String message) {
     Log.w(tag, message);
   }
