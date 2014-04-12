@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 
+import static eu.nerro.wolappla.provider.DeviceContract.Devices;
 import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
 
 /**
@@ -44,12 +45,20 @@ public class DeviceProvider extends ContentProvider {
   }
 
   @Override
-  public Cursor query(Uri uri, String[] strings, String s, String[] strings2, String s2) {
-    return null;
+  public String getType(Uri uri) {
+    final int match = sUriMatcher.match(uri);
+    switch (match) {
+      case DEVICES:
+        return Devices.CONTENT_TYPE;
+      case DEVICES_ID:
+        return Devices.CONTENT_ITEM_TYPE;
+      default:
+        throw new UnsupportedOperationException("Unknown uri: " + uri);
+    }
   }
 
   @Override
-  public String getType(Uri uri) {
+  public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
     return null;
   }
 
