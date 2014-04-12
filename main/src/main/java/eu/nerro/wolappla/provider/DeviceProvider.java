@@ -19,6 +19,7 @@ public class DeviceProvider extends ContentProvider {
   private static final UriMatcher sUriMatcher = buildUriMatcher();
 
   private static final int DEVICES = 100;
+  private static final int DEVICES_ID = 101;
 
   private DeviceDatabase mOpenHelper;
 
@@ -31,6 +32,7 @@ public class DeviceProvider extends ContentProvider {
     final String authority = DeviceContract.CONTENT_AUTHORITY;
 
     matcher.addURI(authority, "devices", DEVICES);
+    matcher.addURI(authority, "devices/*", DEVICES_ID);
 
     return matcher;
   }
