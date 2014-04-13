@@ -111,8 +111,15 @@ public class DeviceProvider extends ContentProvider {
   }
 
   @Override
-  public int delete(Uri uri, String s, String[] strings) {
-    return 0;
+  public int delete(Uri uri, String selection, String[] selectionArgs) {
+    LOGV(TAG, "delete(uri=" + uri + ")");
+
+    final SQLiteDatabase database = mOpenHelper.getWritableDatabase();
+    final SelectionBuilder builder = buildSimpleSelection(uri);
+    final int affectedRows = builder.where(selection, selectionArgs).delete(database);
+    notifyChange(uri);
+
+    return affectedRows;
   }
 
   private SelectionBuilder buildSimpleSelection(Uri uri) {

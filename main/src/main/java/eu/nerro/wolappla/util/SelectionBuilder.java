@@ -82,6 +82,16 @@ public class SelectionBuilder {
     return database.update(mTable, values, getSelection(), getSelectionArgs());
   }
 
+  /**
+   * Execute delete using the current internal state as <code>WHERE</code> clause.
+   */
+  public int delete(SQLiteDatabase database) {
+    assertTable();
+    LOGV(TAG, "delete() " + this);
+
+    return database.delete(mTable, getSelection(), getSelectionArgs());
+  }
+
   private void assertTable() {
     if (mTable == null) {
       throw new IllegalStateException("Table not specified");
