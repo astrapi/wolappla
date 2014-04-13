@@ -1,5 +1,6 @@
 package eu.nerro.wolappla.util;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
@@ -69,6 +70,16 @@ public class SelectionBuilder {
     LOGV(TAG, "query(columns=" + Arrays.toString(columns) + ") " + this);
 
     return database.query(mTable, columns, getSelection(), getSelectionArgs(), groupBy, having, orderBy, limit);
+  }
+
+  /**
+   * Execute update using current internal state as <code>WHERE</code> clause.
+   */
+  public int update(SQLiteDatabase database, ContentValues values) {
+    assertTable();
+    LOGV(TAG, "update() " + this);
+
+    return database.update(mTable, values, getSelection(), getSelectionArgs());
   }
 
   private void assertTable() {

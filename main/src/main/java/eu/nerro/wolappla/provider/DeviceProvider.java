@@ -99,8 +99,15 @@ public class DeviceProvider extends ContentProvider {
   }
 
   @Override
-  public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-    return 0;
+  public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    LOGV(TAG, "update(uri=" + uri + ", values=" + values.toString() + ")");
+
+    final SQLiteDatabase database = mOpenHelper.getWritableDatabase();
+    final SelectionBuilder builder = buildSimpleSelection(uri);
+    final int affectedRows = builder.where(selection, selectionArgs).update(database, values);
+    notifyChange(uri);
+
+    return affectedRows;
   }
 
   @Override
