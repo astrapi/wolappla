@@ -3,6 +3,7 @@ package eu.nerro.wolappla.provider;
 import android.app.Activity;
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -77,6 +78,37 @@ public class DeviceProvider extends ContentProvider {
     return builder.where(selection, selectionArgs).query(database, projection, sortOrder);
   }
 
+  @Override
+  public Uri insert(Uri uri, ContentValues values) {
+    LOGV(TAG, "insert(uri=" + uri + ", values=" + values.toString() + ")");
+
+    final SQLiteDatabase database = mOpenHelper.getWritableDatabase();
+    if (database == null) {
+      throw new UnsupportedOperationException("No database found");
+    }
+
+    final int match = sUriMatcher.match(uri);
+    switch (match) {
+      case DEVICES:
+        database.insertOrThrow(Tables.DEVICES, null, values);
+        notifyChange(uri);
+        return Devices.buildDeviceUri(values.getAsString(Devices.DEVICE_ID));
+
+      default:
+        throw new UnsupportedOperationException("Unknown uri: " + uri);
+    }
+  }
+
+  @Override
+  public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
+    return 0;
+  }
+
+  @Override
+  public int delete(Uri uri, String s, String[] strings) {
+    return 0;
+  }
+
   private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
     final SelectionBuilder builder = new SelectionBuilder();
     switch (match) {
@@ -92,18 +124,13 @@ public class DeviceProvider extends ContentProvider {
     }
   }
 
-  @Override
-  public Uri insert(Uri uri, ContentValues contentValues) {
-    return null;
-  }
+  private void notifyChange(Uri uri) {
+    Context context = getContext();
+    if (context == null) {
+      return;
+    }
 
-  @Override
-  public int delete(Uri uri, String s, String[] strings) {
-    return 0;
-  }
-
-  @Override
-  public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-    return 0;
+    context.getContentResolver().notifyChange(uri, null, false);
+    // Send broadcast here for refreshing widgets (currently no widgets exist)
   }
 }
