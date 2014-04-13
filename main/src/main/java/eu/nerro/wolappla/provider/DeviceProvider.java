@@ -5,9 +5,16 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import java.util.Arrays;
+
+import eu.nerro.wolappla.util.SelectionBuilder;
+
 import static eu.nerro.wolappla.provider.DeviceContract.Devices;
+import static eu.nerro.wolappla.provider.DeviceDatabase.Tables;
+import static eu.nerro.wolappla.util.LogUtils.LOGV;
 import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
 
 /**
@@ -50,8 +57,10 @@ public class DeviceProvider extends ContentProvider {
     switch (match) {
       case DEVICES:
         return Devices.CONTENT_TYPE;
+
       case DEVICES_ID:
         return Devices.CONTENT_ITEM_TYPE;
+
       default:
         throw new UnsupportedOperationException("Unknown uri: " + uri);
     }
@@ -59,7 +68,28 @@ public class DeviceProvider extends ContentProvider {
 
   @Override
   public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-    return null;
+    LOGV(TAG, "query(uri=" + uri + ", projection=" + Arrays.toString(projection) + ")");
+
+    final SQLiteDatabase database = mOpenHelper.getReadableDatabase();
+    final int match = sUriMatcher.match(uri);
+    final SelectionBuilder builder = buildExpandedSelection(uri, match);
+
+    return builder.where(selection, selectionArgs).query(database, projection, sortOrder);
+  }
+
+  private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
+    final SelectionBuilder builder = new SelectionBuilder();
+    switch (match) {
+      case DEVICES:
+        return builder.table(Tables.DEVICES);
+
+      case DEVICES_ID:
+        final String deviceId = Devices.getDeviceId(uri);
+        return builder.table(Tables.DEVICES).where(Devices.DEVICE_ID + "=?", deviceId);
+
+      default:
+        throw new UnsupportedOperationException("Unknown uri: " + uri);
+    }
   }
 
   @Override

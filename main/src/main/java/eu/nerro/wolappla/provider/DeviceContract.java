@@ -3,6 +3,8 @@ package eu.nerro.wolappla.provider;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+import java.util.List;
+
 /**
  * Contract class for interacting with {@link DeviceProvider}.
  */
@@ -29,9 +31,15 @@ public class DeviceContract {
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.wolappla.device";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.wolappla.device";
 
-    /** Build {@link Uri} for requested {@link #DEVICE_NAME}. */
-    public static Uri buildDeviceUri(String deviceName) {
-      return CONTENT_URI.buildUpon().appendPath(deviceName).build();
+    /** Build {@link Uri} for requested {@link #DEVICE_ID}. */
+    public static Uri buildDeviceUri(String deviceId) {
+      return CONTENT_URI.buildUpon().appendPath(deviceId).build();
+    }
+
+    /** Read {@link #DEVICE_ID} from {@link Devices} {@link Uri}. */
+    public static String getDeviceId(Uri uri) {
+      final List<String> pathSegments = uri.getPathSegments();
+      return pathSegments != null ? pathSegments.get(1) : null;
     }
   }
 }
