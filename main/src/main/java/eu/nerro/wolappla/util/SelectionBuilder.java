@@ -56,14 +56,14 @@ public class SelectionBuilder {
   }
 
   /**
-   * Execute query using current internal state as <code>WHERE</code> clause.
+   * Execute query using the current internal state as <code>WHERE</code> clause.
    */
   public Cursor query(SQLiteDatabase database, String[] columns, String orderBy) {
     return query(database, columns, null, null, orderBy, null);
   }
 
   /**
-   * Execute query using current internal state as <code>WHERE</code> clause.
+   * Execute query using the current internal state as <code>WHERE</code> clause.
    */
   public Cursor query(SQLiteDatabase database, String[] columns, String groupBy, String having, String orderBy, String limit) {
     assertTable();
@@ -73,7 +73,7 @@ public class SelectionBuilder {
   }
 
   /**
-   * Execute update using current internal state as <code>WHERE</code> clause.
+   * Execute update using the current internal state as <code>WHERE</code> clause.
    */
   public int update(SQLiteDatabase database, ContentValues values) {
     assertTable();
