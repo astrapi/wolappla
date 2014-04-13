@@ -12,6 +12,8 @@ public class DeviceContract {
   public static final String PATH_DEVICES = "devices";
 
   interface DevicesColumns {
+    /** Unique string identifying this device. */
+    String DEVICE_ID = "device_id";
     /** Name describing this device. */
     String DEVICE_NAME = "device_name";
     /** MAC address of the network card of this device. */
