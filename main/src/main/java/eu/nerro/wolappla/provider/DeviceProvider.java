@@ -72,8 +72,7 @@ public class DeviceProvider extends ContentProvider {
     LOGV(TAG, "query(uri=" + uri + ", projection=" + Arrays.toString(projection) + ")");
 
     final SQLiteDatabase database = mOpenHelper.getReadableDatabase();
-    final int match = sUriMatcher.match(uri);
-    final SelectionBuilder builder = buildExpandedSelection(uri, match);
+    final SelectionBuilder builder = buildSimpleSelection(uri);
 
     return builder.where(selection, selectionArgs).query(database, projection, sortOrder);
   }
@@ -109,8 +108,10 @@ public class DeviceProvider extends ContentProvider {
     return 0;
   }
 
-  private SelectionBuilder buildExpandedSelection(Uri uri, int match) {
+  private SelectionBuilder buildSimpleSelection(Uri uri) {
     final SelectionBuilder builder = new SelectionBuilder();
+
+    final int match = sUriMatcher.match(uri);
     switch (match) {
       case DEVICES:
         return builder.table(Tables.DEVICES);
