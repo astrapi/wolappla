@@ -19,6 +19,10 @@
       </intent-filter>
     </activity>
 
+    <provider android:authorities="eu.nerro.wolappla"
+              android:name=".provider.DeviceProvider"
+              android:exported="false"/>
+
   </application>
 
 </manifest>
