@@ -91,7 +91,7 @@ public class DeviceProvider extends ContentProvider {
       case DEVICES:
         database.insertOrThrow(Tables.DEVICES, null, values);
         notifyChange(uri);
-        return Devices.buildDeviceUri(values.getAsString(Devices.DEVICE_ID));
+        return Devices.buildDeviceUri(values.getAsString(Devices._ID));
 
       default:
         throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -132,7 +132,7 @@ public class DeviceProvider extends ContentProvider {
 
       case DEVICES_ID:
         final String deviceId = Devices.getDeviceId(uri);
-        return builder.table(Tables.DEVICES).where(Devices.DEVICE_ID + "=?", deviceId);
+        return builder.table(Tables.DEVICES).where(Devices._ID + "=?", deviceId);
 
       default:
         throw new UnsupportedOperationException("Unknown uri: " + uri);

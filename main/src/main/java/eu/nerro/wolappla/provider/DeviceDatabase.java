@@ -27,12 +27,10 @@ public class DeviceDatabase extends SQLiteOpenHelper {
   public void onCreate(SQLiteDatabase database) {
     database.execSQL("CREATE TABLE " + Tables.DEVICES + " ("
         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-        + DevicesColumns.DEVICE_ID + " TEXT NOT NULL,"
         + DevicesColumns.DEVICE_NAME + " TEXT NOT NULL,"
         + DevicesColumns.DEVICE_MAC_ADDRESS + " TEXT NOT NULL,"
         + DevicesColumns.DEVICE_IP_ADDRESS + " TEXT NOT NULL,"
-        + DevicesColumns.DEVICE_PORT + " INTEGER NOT NULL,"
-        + "UNIQUE (" + DevicesColumns.DEVICE_ID + ") ON CONFLICT REPLACE)");
+        + DevicesColumns.DEVICE_PORT + " INTEGER NOT NULL)");
   }
 
   @Override

@@ -14,8 +14,6 @@ public class DeviceContract {
   public static final String PATH_DEVICES = "devices";
 
   interface DevicesColumns {
-    /** Unique string identifying this device. */
-    String DEVICE_ID = "device_id";
     /** Name describing this device. */
     String DEVICE_NAME = "device_name";
     /** MAC address of the network card of this device. */
@@ -31,12 +29,12 @@ public class DeviceContract {
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.wolappla.device";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.wolappla.device";
 
-    /** Build {@link Uri} for requested {@link #DEVICE_ID}. */
+    /** Build {@link Uri} for requested device id. */
     public static Uri buildDeviceUri(String deviceId) {
       return CONTENT_URI.buildUpon().appendPath(deviceId).build();
     }
 
-    /** Read {@link #DEVICE_ID} from {@link Devices} {@link Uri}. */
+    /** Read device id from {@link Devices} {@link Uri}. */
     public static String getDeviceId(Uri uri) {
       final List<String> pathSegments = uri.getPathSegments();
       return pathSegments != null ? pathSegments.get(1) : null;
