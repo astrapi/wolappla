@@ -16,12 +16,15 @@ import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
 /**
  * A launcher activity containing:
  * <ul>
- * <li>view to show a list of devices which can be turned on</li>
- * <li>view to scan network for enabled devices</li>
+ * <li>view to show a list of devices which can be turned on
+ * <li>view to scan network for enabled devices
  * </ul>
  */
-public class HomeActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+public class HomeActivity extends FragmentActivity implements ActionBar.TabListener {
   private static final String TAG = makeLogTag(HomeActivity.class);
+
+  private static final int NAVIGATION_TABS_COUNT = 1;
+  private static final int NAVIGATION_TAB_DEVICES = 0;
 
   private ViewPager mViewPager;
 
@@ -33,22 +36,13 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
     mViewPager = (ViewPager) findViewById(R.id.pager);
     final ActionBar actionBar = getActionBar();
     if (mViewPager != null && actionBar != null) {
-      mViewPager.setAdapter(new HomePageAdapter(getSupportFragmentManager()));
-      mViewPager.setOnPageChangeListener(this);
+      mViewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
 
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-      actionBar.addTab(
-          actionBar.newTab()
-              .setText(R.string.title_devices)
-              .setTabListener(this)
-      );
-      actionBar.addTab(
-          actionBar.newTab()
-              .setText(R.string.title_scanning)
-              .setTabListener(this)
-      );
-
-      actionBar.setHomeButtonEnabled(false);
+      actionBar.setDisplayHomeAsUpEnabled(false);
+      actionBar.addTab(actionBar.newTab()
+          .setText(R.string.title_devices)
+          .setTabListener(this));
     }
   }
 
@@ -65,34 +59,16 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
   }
 
-  @Override
-  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-  }
-
-  @Override
-  public void onPageSelected(int position) {
-    final ActionBar actionBar = getActionBar();
-    if (actionBar != null) {
-      actionBar.setSelectedNavigationItem(position);
-    }
-  }
-
-  @Override
-  public void onPageScrollStateChanged(int state) {
-  }
-
-  private static class HomePageAdapter extends FragmentPagerAdapter {
-    public HomePageAdapter(FragmentManager fragmentManager) {
+  private class HomePagerAdapter extends FragmentPagerAdapter {
+    public HomePagerAdapter(FragmentManager fragmentManager) {
       super(fragmentManager);
     }
 
     @Override
     public Fragment getItem(int position) {
       switch (position) {
-        case 0:
-          return new DeviceListFragment();
-        case 1:
-          return new ScanningFragment();
+        case NAVIGATION_TAB_DEVICES:
+          return new DevicesFragment();
       }
 
       return null;
@@ -100,7 +76,7 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     public int getCount() {
-      return 2;
+      return NAVIGATION_TABS_COUNT;
     }
   }
 }
