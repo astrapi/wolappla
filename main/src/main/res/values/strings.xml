@@ -2,5 +2,7 @@
 <resources>
   <string name="app_name">Wolappla</string>
 
+  <string name="description_add_device">Add device</string>
+
   <string name="title_devices">Devices</string>
 </resources>
