@@ -21,6 +21,7 @@
 
     <provider android:authorities="eu.nerro.wolappla"
               android:name=".provider.DeviceProvider"
+              android:label="@string/app_name"
               android:exported="false"/>
 
   </application>
