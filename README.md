@@ -9,4 +9,4 @@ Wolappla is an Android Wake-On-LAN application to turn on a computer by a networ
 License
 -------
 
-Licensed under MIT. See [LICENCE](https://github.com/nerro/wolappla/blob/master/LICENSE) file.
+Wolappla is licensed under the [MIT Licence](https://github.com/nerro/wolappla/blob/master/LICENSE).
