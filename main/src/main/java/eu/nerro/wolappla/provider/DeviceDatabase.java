@@ -25,6 +25,7 @@ public class DeviceDatabase extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase database) {
+    LOGD(TAG, "onCreate() for version " + DATABASE_VERSION);
     database.execSQL("CREATE TABLE " + Tables.DEVICES + " ("
         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
         + DevicesColumns.DEVICE_NAME + " TEXT NOT NULL,"
