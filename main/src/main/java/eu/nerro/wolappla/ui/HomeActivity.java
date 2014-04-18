@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 
 import eu.nerro.wolappla.R;
 
+import static eu.nerro.wolappla.util.LogUtils.LOGV;
 import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
 
 /**
@@ -38,6 +39,7 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
     if (mViewPager != null && actionBar != null) {
       mViewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
 
+      LOGV(TAG, "onCreate(): navigation tabs are initialized.");
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
       actionBar.setDisplayHomeAsUpEnabled(false);
       actionBar.addTab(actionBar.newTab()
