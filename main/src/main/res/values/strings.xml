@@ -5,4 +5,6 @@
   <string name="description_add_device">Add device</string>
 
   <string name="title_devices">Devices</string>
+
+  <string name="not_implemented_feature">Be patient. Feature is not yet implemented.</string>
 </resources>
