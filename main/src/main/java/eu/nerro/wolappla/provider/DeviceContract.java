@@ -29,6 +29,9 @@ public class DeviceContract {
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.wolappla.device";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.wolappla.device";
 
+    /** Default "ORDER BY" clause. */
+    public static final String DEFAULT_SORT = DevicesColumns.DEVICE_NAME + " ASC";
+
     /** Build {@link Uri} for requested device id. */
     public static Uri buildDeviceUri(String deviceId) {
       return CONTENT_URI.buildUpon().appendPath(deviceId).build();
