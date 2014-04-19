@@ -21,7 +21,7 @@ import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
  * <li>view to scan network for enabled devices
  * </ul>
  */
-public class HomeActivity extends FragmentActivity implements ActionBar.TabListener {
+public class HomeActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
   private static final String TAG = makeLogTag(HomeActivity.class);
 
   private static final int NAVIGATION_TABS_COUNT = 2;
@@ -39,6 +39,7 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
     final ActionBar actionBar = getActionBar();
     if (mViewPager != null && actionBar != null) {
       mViewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
+      mViewPager.setOnPageChangeListener(this);
 
       LOGV(TAG, "onCreate(): navigation tabs are initialized.");
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -63,6 +64,22 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
 
   @Override
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+  }
+
+  @Override
+  public void onPageSelected(int position) {
+    final ActionBar actionBar = getActionBar();
+    if (actionBar != null) {
+      actionBar.setSelectedNavigationItem(position);
+    }
+  }
+
+  @Override
+  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+  }
+
+  @Override
+  public void onPageScrollStateChanged(int state) {
   }
 
   private class HomePagerAdapter extends FragmentPagerAdapter {
