@@ -7,6 +7,9 @@
   <string name="title_devices">Devices</string>
   <string name="title_scanning">Scanning</string>
 
+  <string name="actionbar_done">Done</string>
+  <string name="actionbar_cancel">Cancel</string>
+
   <string name="empty_devices">No devices are available. Add a device to continue.</string>
 
   <string name="not_implemented_feature">Be patient. Feature is not yet implemented.</string>
