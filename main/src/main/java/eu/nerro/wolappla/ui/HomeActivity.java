@@ -41,7 +41,6 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
       mViewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
       mViewPager.setOnPageChangeListener(this);
 
-      LOGV(TAG, "onCreate(): navigation tabs are initialized.");
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
       actionBar.setDisplayHomeAsUpEnabled(false);
       actionBar.addTab(actionBar.newTab()
@@ -50,6 +49,7 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
       actionBar.addTab(actionBar.newTab()
           .setText(R.string.title_scanning)
           .setTabListener(this));
+      LOGV(TAG, "onCreate(): navigation tabs are initialized.");
     }
   }
 
