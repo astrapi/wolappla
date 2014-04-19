@@ -24,8 +24,9 @@ import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
 public class HomeActivity extends FragmentActivity implements ActionBar.TabListener {
   private static final String TAG = makeLogTag(HomeActivity.class);
 
-  private static final int NAVIGATION_TABS_COUNT = 1;
+  private static final int NAVIGATION_TABS_COUNT = 2;
   private static final int NAVIGATION_TAB_DEVICES = 0;
+  private static final int NAVIGATION_TAB_SCANNING = 1;
 
   private ViewPager mViewPager;
 
@@ -44,6 +45,9 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
       actionBar.setDisplayHomeAsUpEnabled(false);
       actionBar.addTab(actionBar.newTab()
           .setText(R.string.title_devices)
+          .setTabListener(this));
+      actionBar.addTab(actionBar.newTab()
+          .setText(R.string.title_scanning)
           .setTabListener(this));
     }
   }
@@ -71,6 +75,9 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
       switch (position) {
         case NAVIGATION_TAB_DEVICES:
           return new DevicesFragment();
+
+        case NAVIGATION_TAB_SCANNING:
+          return new ScanningFragment();
       }
 
       return null;

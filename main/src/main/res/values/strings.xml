@@ -5,6 +5,7 @@
   <string name="description_add_device">Add device</string>
 
   <string name="title_devices">Devices</string>
+  <string name="title_scanning">Scanning</string>
 
   <string name="empty_devices">No devices are available. Add a device to continue.</string>
 
