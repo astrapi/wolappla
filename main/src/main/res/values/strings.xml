@@ -8,7 +8,7 @@
   <string name="title_scanning">Scanning</string>
 
   <string name="actionbar_done">Done</string>
-  <string name="actionbar_cancel">Cancel</string>
+  <string name="actionbar_discard">Discard</string>
 
   <string name="empty_devices">No devices are available. Add a device to continue.</string>
 
