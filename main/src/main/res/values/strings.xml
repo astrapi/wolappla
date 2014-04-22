@@ -13,4 +13,9 @@
   <string name="empty_devices">No devices are available. Add a device to continue.</string>
 
   <string name="not_implemented_feature">Be patient. Feature is not yet implemented.</string>
+
+  <string name="device_detail_name">Name</string>
+  <string name="device_detail_mac_address">MAC Address</string>
+  <string name="device_detail_ip_address">Broadcast IP Address</string>
+  <string name="device_detail_port">Port</string>
 </resources>
