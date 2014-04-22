@@ -11,9 +11,6 @@ import android.support.v4.view.ViewPager;
 
 import eu.nerro.wolappla.R;
 
-import static eu.nerro.wolappla.util.LogUtils.LOGV;
-import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
-
 /**
  * A launcher activity containing:
  * <ul>
@@ -22,8 +19,6 @@ import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
  * </ul>
  */
 public class HomeActivity extends FragmentActivity implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
-  private static final String TAG = makeLogTag(HomeActivity.class);
-
   private static final int NAVIGATION_TABS_COUNT = 2;
   private static final int NAVIGATION_TAB_DEVICES = 0;
   private static final int NAVIGATION_TAB_SCANNING = 1;
@@ -49,7 +44,6 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
       actionBar.addTab(actionBar.newTab()
           .setText(R.string.title_scanning)
           .setTabListener(this));
-      LOGV(TAG, "onCreate(): navigation tabs are initialized.");
     }
   }
 
