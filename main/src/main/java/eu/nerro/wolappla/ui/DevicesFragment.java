@@ -60,10 +60,6 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-    if (getActivity() == null) {
-      return;
-    }
-
     mAdapter.swapCursor(data);
   }
 
