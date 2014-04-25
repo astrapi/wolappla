@@ -19,7 +19,11 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".ui.DeviceDetailActivity"/>
+    <activity android:name=".ui.DeviceDetailActivity">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="eu.nerro.wolappla.ui.HomeActivity"/>
+    </activity>
 
     <provider android:authorities="eu.nerro.wolappla"
               android:name=".provider.DeviceProvider"
