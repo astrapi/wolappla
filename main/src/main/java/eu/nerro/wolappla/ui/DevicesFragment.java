@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import eu.nerro.wolappla.R;
@@ -66,6 +67,11 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
     mAdapter.swapCursor(null);
+  }
+
+  @Override
+  public void onListItemClick(ListView l, View v, int position, long id) {
+    // TODO: implement logic for calling of detail panel
   }
 
   /**
