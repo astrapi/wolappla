@@ -3,6 +3,7 @@
   <string name="app_name">Wolappla</string>
 
   <string name="description_add_device">Add device</string>
+  <string name="description_remove_device">Remove device</string>
 
   <string name="title_devices">Devices</string>
   <string name="title_scanning">Scanning</string>
@@ -14,6 +15,7 @@
 
   <string name="not_implemented_feature">Be patient. Feature is not yet implemented.</string>
 
+  <!-- DeviceDetailActivity -->
   <string name="device_detail_name">Name</string>
   <string name="device_detail_mac_address">MAC Address</string>
   <string name="device_detail_ip_address">Broadcast IP Address</string>
