@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/menu_add_device"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/description_add_device"
+        android:showAsAction="always"/>
+</menu>
