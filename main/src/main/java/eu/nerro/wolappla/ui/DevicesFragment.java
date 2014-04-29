@@ -42,10 +42,21 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
   }
 
   @Override
+  public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    activity.getContentResolver().registerContentObserver(DeviceContract.Devices.CONTENT_URI, true, mObserver);
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+    getActivity().getContentResolver().unregisterContentObserver(mObserver);
+  }
+
+  @Override
   public Loader<Cursor> onCreateLoader(int loaderId, Bundle data) {
     switch (loaderId) {
       case URL_LOADER:
-        LOGV(TAG, "onCreateLoader() - cursor loader for devices is created");
         return new CursorLoader(
             getActivity(),
             DeviceContract.Devices.CONTENT_URI,
@@ -113,20 +124,31 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
         return;
       }
 
-      final TextView nameView = (TextView) view.findViewById(R.id.device_name);
-      final TextView macAddressView = (TextView) view.findViewById(R.id.device_mac_address);
-      final TextView ipAddressView = (TextView) view.findViewById(R.id.device_ip_address);
-      final TextView portView = (TextView) view.findViewById(R.id.device_port);
+      final TextView nameView = (TextView) view.findViewById(android.R.id.text1);
+      final TextView macAddressView = (TextView) view.findViewById(android.R.id.text2);
 
       final String deviceName = cursor.getString(DevicesQuery.NAME);
       final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
-      final String deviceIpAddress = cursor.getString(DevicesQuery.IP_ADDRESS);
-      final String devicePort = cursor.getString(DevicesQuery.PORT);
 
       nameView.setText(deviceName);
       macAddressView.setText(deviceMacAddress);
-      ipAddressView.setText(deviceIpAddress);
-      portView.setText(devicePort);
+    }
+  }
+
+  private class DeviceContentObserver extends ContentObserver {
+    public DeviceContentObserver(Handler handler) {
+      super(handler);
+    }
+
+    @Override
+    public void onChange(boolean selfChange) {
+      super.onChange(selfChange);
+
+      if (!isAdded()) {
+        return;
+      }
+
+      getLoaderManager().restartLoader(URL_LOADER, null, DevicesFragment.this);
     }
   }
 }
