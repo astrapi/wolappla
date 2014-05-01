@@ -13,6 +13,9 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
@@ -31,8 +34,32 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
   private CursorAdapter mAdapter;
 
   @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_list_devices, container, false);
+  }
+
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    inflater.inflate(R.menu.devices, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_add_device:
+        Intent intent = new Intent(getActivity(), DeviceDetailActivity.class);
+        startActivityForResult(intent, CREATE_DEVICE_ENTRY_REQUEST_CODE);
+        return true;
+
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   @Override
