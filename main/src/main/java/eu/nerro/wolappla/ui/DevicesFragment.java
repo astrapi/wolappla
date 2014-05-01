@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import eu.nerro.wolappla.R;
 import eu.nerro.wolappla.provider.DeviceContract;
+import eu.nerro.wolappla.provider.DeviceProvider;
 
 public class DevicesFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
   public static final int CREATE_DEVICE_ENTRY_REQUEST_CODE = 100;
@@ -186,6 +187,9 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
     }
   }
 
+  /**
+   * Receives call backs for changes to {@link DeviceProvider}.
+   */
   private class DeviceContentObserver extends ContentObserver {
     public DeviceContentObserver(Handler handler) {
       super(handler);
