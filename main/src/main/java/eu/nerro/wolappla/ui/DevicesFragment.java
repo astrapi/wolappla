@@ -1,8 +1,13 @@
 package eu.nerro.wolappla.ui;
 
+import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -11,19 +16,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import eu.nerro.wolappla.R;
 import eu.nerro.wolappla.provider.DeviceContract;
 
-import static eu.nerro.wolappla.util.LogUtils.LOGV;
-import static eu.nerro.wolappla.util.LogUtils.makeLogTag;
-
 public class DevicesFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
-  private static final String TAG = makeLogTag(DevicesFragment.class);
+  public static final int CREATE_DEVICE_ENTRY_REQUEST_CODE = 100;
+  public static final int UPDATE_DEVICE_ENTRY_REQUEST_CODE = 101;
 
   private static final int URL_LOADER = 0;
+  private static final int DEFAULT_DEVICE_PORT = 9;
+  private final ContentObserver mObserver = new DeviceContentObserver(new Handler());
   private CursorAdapter mAdapter;
 
   @Override
@@ -81,8 +85,28 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
   }
 
   @Override
-  public void onListItemClick(ListView l, View v, int position, long id) {
-    // TODO: implement logic for calling of detail panel
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (resultCode == Activity.RESULT_OK) {
+      final String deviceName = data.getStringExtra(DeviceContract.Devices.DEVICE_NAME);
+      final String deviceMacAddress = data.getStringExtra(DeviceContract.Devices.DEVICE_MAC_ADDRESS);
+      final String deviceIpAddress = data.getStringExtra(DeviceContract.Devices.DEVICE_IP_ADDRESS);
+      final int devicePort = data.getIntExtra(DeviceContract.Devices.DEVICE_PORT, DEFAULT_DEVICE_PORT);
+
+      ContentValues value = new ContentValues();
+      value.put(DeviceContract.Devices.DEVICE_NAME, deviceName);
+      value.put(DeviceContract.Devices.DEVICE_MAC_ADDRESS, deviceMacAddress);
+      value.put(DeviceContract.Devices.DEVICE_IP_ADDRESS, deviceIpAddress);
+      value.put(DeviceContract.Devices.DEVICE_PORT, devicePort);
+
+      switch (requestCode) {
+        case CREATE_DEVICE_ENTRY_REQUEST_CODE:
+          getActivity().getContentResolver().insert(DeviceContract.Devices.CONTENT_URI, value);
+          break;
+
+        case UPDATE_DEVICE_ENTRY_REQUEST_CODE:
+          break;
+      }
+    }
   }
 
   /**
@@ -114,7 +138,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return getActivity().getLayoutInflater().inflate(R.layout.list_item_device, parent, false);
+      return getActivity().getLayoutInflater().inflate(android.R.layout.simple_list_item_2, parent, false);
     }
 
     @Override
