@@ -115,6 +115,10 @@ public class DeviceProvider extends ContentProvider {
     LOGV(TAG, "delete(uri=" + uri + ")");
 
     final SQLiteDatabase database = mOpenHelper.getWritableDatabase();
+    if (database == null) {
+      throw new UnsupportedOperationException("No database found");
+    }
+
     final SelectionBuilder builder = buildSimpleSelection(uri);
     final int affectedRows = builder.where(selection, selectionArgs).delete(database);
     notifyChange(uri);

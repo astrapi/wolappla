@@ -37,6 +37,11 @@ public class DeviceContract {
       return CONTENT_URI.buildUpon().appendPath(deviceId).build();
     }
 
+    /** Build {@link Uri} for requested device id. */
+    public static Uri buildDeviceUri(Long deviceId) {
+      return CONTENT_URI.buildUpon().appendPath(String.valueOf(deviceId)).build();
+    }
+
     /** Read device id from {@link Devices} {@link Uri}. */
     public static String getDeviceId(Uri uri) {
       final List<String> pathSegments = uri.getPathSegments();
