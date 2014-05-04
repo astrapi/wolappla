@@ -185,14 +185,17 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
       }
 
       final TextView nameView = (TextView) view.findViewById(R.id.list_item_device_name);
-//      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_device_mac_address);
+      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_device_mac_address);
+      final TextView ipAddressView = (TextView) view.findViewById(R.id.list_item_device_ip_address);
       final ImageButton startButton = (ImageButton) view.findViewById(R.id.list_item_device_start_button);
 
       final String deviceName = cursor.getString(DevicesQuery.NAME);
-//      final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
+      final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
+      final String deviceIpAddress = cursor.getString(DevicesQuery.IP_ADDRESS);
 
       nameView.setText(deviceName);
-//      macAddressView.setText(deviceMacAddress);
+      macAddressView.setText(deviceMacAddress);
+      ipAddressView.setText(deviceIpAddress);
       startButton.setFocusable(false);
     }
   }

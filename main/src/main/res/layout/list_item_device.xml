@@ -27,45 +27,43 @@
 
   <ImageView android:id="@+id/list_item_device_image"
              android:contentDescription="@string/description_device_image"
-             android:layout_width="wrap_content"
-             android:layout_height="48dp"
+             android:layout_width="60dp"
+             android:layout_height="64dp"
              android:layout_below="@id/list_item_device_name_separator"
              android:paddingTop="8dp"
              android:paddingBottom="8dp"
              android:paddingLeft="16dp"
              android:paddingRight="8dp"
-             android:src="@drawable/device_computer"/>
-
-  <!--<LinearLayout android:id="@+id/list_item_device_"-->
-  <!--android:layout_width="match_parent"-->
-  <!--android:layout_height="48dp"-->
-  <!--android:layout_below="@id/list_item_device_name_separator"-->
-  <!--android:layout_toRightOf="@id/list_item_device_image"-->
-  <!--android:layout_toLeftOf="@id/list_item_device_start_button"-->
-  <!--android:orientation="vertical">-->
-  <!--<TextView android:id="@+id/list_item_device_mac_address"-->
-  <!--android:layout_width="match_parent"-->
-  <!--android:layout_height="0dp"-->
-  <!--android:layout_weight="1"-->
-  <!--android:gravity="left|bottom"-->
-  <!--android:text="00:ff:11:ee:44:aa"/>-->
-
-  <!--<TextView android:id="@+id/list_item_device_ip_address"-->
-  <!--android:layout_width="match_parent"-->
-  <!--android:layout_height="0dp"-->
-  <!--android:layout_weight="1"-->
-  <!--android:gravity="left|top"-->
-  <!--android:text="192.168.1.255"/>-->
-  <!--</LinearLayout>-->
+             android:src="@drawable/list_item_device"/>
 
   <ImageButton android:id="@+id/list_item_device_start_button"
                android:contentDescription="@string/description_start_device"
                android:layout_width="48dp"
                android:layout_height="48dp"
-               android:layout_below="@+id/list_item_device_name_separator"
                android:layout_alignParentRight="true"
+               android:layout_alignParentBottom="true"
                android:src="@drawable/ic_action_play"
                android:focusable="false"
                style="?android:borderlessButtonStyle"/>
+
+  <LinearLayout android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_below="@id/list_item_device_name_separator"
+                android:layout_toRightOf="@id/list_item_device_image"
+                android:layout_toLeftOf="@id/list_item_device_start_button"
+                android:orientation="vertical">
+    <TextView android:id="@+id/list_item_device_mac_address"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:gravity="left|bottom"
+              android:textAppearance="?android:textAppearanceMedium"/>
+    <TextView android:id="@+id/list_item_device_ip_address"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:gravity="left|top"
+              android:textAppearance="?android:textAppearanceMedium"/>
+  </LinearLayout>
 
 </RelativeLayout>
