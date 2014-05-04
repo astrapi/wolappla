@@ -5,6 +5,7 @@
   <string name="description_add_device">Add device</string>
   <string name="description_remove_device">Remove device</string>
   <string name="description_device_image">Device image</string>
+  <string name="description_start_device">Start device</string>
 
   <string name="title_devices">Devices</string>
   <string name="title_scanning">Scanning</string>
