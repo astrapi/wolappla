@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -173,7 +174,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return getActivity().getLayoutInflater().inflate(android.R.layout.simple_list_item_2, parent, false);
+      return getActivity().getLayoutInflater().inflate(R.layout.list_item_device, parent, false);
     }
 
     @Override
@@ -183,14 +184,16 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
         return;
       }
 
-      final TextView nameView = (TextView) view.findViewById(android.R.id.text1);
-      final TextView macAddressView = (TextView) view.findViewById(android.R.id.text2);
+      final TextView nameView = (TextView) view.findViewById(R.id.list_item_device_name);
+//      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_device_mac_address);
+      final ImageButton startButton = (ImageButton) view.findViewById(R.id.list_item_device_start_button);
 
       final String deviceName = cursor.getString(DevicesQuery.NAME);
-      final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
+//      final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
 
       nameView.setText(deviceName);
-      macAddressView.setText(deviceMacAddress);
+//      macAddressView.setText(deviceMacAddress);
+      startButton.setFocusable(false);
     }
   }
 
