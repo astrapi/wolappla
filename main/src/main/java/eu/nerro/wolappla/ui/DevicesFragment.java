@@ -145,6 +145,12 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
     }
   }
 
+  private void removeDevices(long[] ids) {
+    for (long id : ids) {
+      getActivity().getContentResolver().delete(DeviceContract.Devices.buildDeviceUri(id), null, null);
+    }
+  }
+
   /**
    * {@link DeviceContract.Devices} query parameters.
    */
@@ -248,7 +254,14 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      return false;
+      switch (item.getItemId()) {
+        case R.id.menu_remove_device:
+          removeDevices(listView.getCheckedItemIds());
+          return true;
+
+        default:
+          return false;
+      }
     }
 
     @Override
