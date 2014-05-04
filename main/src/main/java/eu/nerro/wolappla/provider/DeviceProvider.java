@@ -145,7 +145,7 @@ public class DeviceProvider extends ContentProvider {
       return;
     }
 
-    context.getContentResolver().notifyChange(uri, null, false);
+    context.getContentResolver().notifyChange(uri, null);
     // Send broadcast here for refreshing widgets (currently no widgets exist)
   }
 }
