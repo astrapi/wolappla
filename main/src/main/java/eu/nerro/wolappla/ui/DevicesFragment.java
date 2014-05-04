@@ -12,13 +12,16 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import eu.nerro.wolappla.R;
@@ -69,6 +72,10 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     mAdapter = new DevicesAdapter(getActivity());
     setListAdapter(mAdapter);
+
+    ListView listView = getListView();
+    listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+    listView.setMultiChoiceModeListener(new DeviceMultiChoiceListener(listView));
 
     getLoaderManager().restartLoader(URL_LOADER, null, this);
   }
@@ -204,6 +211,42 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
       }
 
       getLoaderManager().restartLoader(URL_LOADER, null, DevicesFragment.this);
+    }
+  }
+
+  private class DeviceMultiChoiceListener implements AbsListView.MultiChoiceModeListener {
+    private AbsListView listView;
+
+    public DeviceMultiChoiceListener(AbsListView listView) {
+      this.listView = listView;
+    }
+
+    @Override
+    public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+    }
+
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+      MenuInflater inflater = mode.getMenuInflater();
+      if (inflater != null) {
+        inflater.inflate(R.menu.devices_context, menu);
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+      return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+      return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
     }
   }
 }
