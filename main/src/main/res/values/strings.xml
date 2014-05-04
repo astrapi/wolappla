@@ -4,12 +4,10 @@
 
   <string name="description_add_device">Add device</string>
   <string name="description_remove_device">Remove device</string>
+  <string name="description_device_image">Device image</string>
 
   <string name="title_devices">Devices</string>
   <string name="title_scanning">Scanning</string>
-
-  <string name="actionbar_done">Done</string>
-  <string name="actionbar_discard">Discard</string>
 
   <string name="empty_devices">No devices are available. Add a device to continue.</string>
 
