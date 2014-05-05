@@ -1,11 +1,13 @@
 package eu.nerro.wolappla.ui;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ListFragment;
@@ -147,7 +149,10 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
   private void removeDevices(long[] ids) {
     for (long id : ids) {
-      getActivity().getContentResolver().delete(DeviceContract.Devices.buildDeviceUri(id), null, null);
+      final Uri deviceUri = ContentUris.withAppendedId(DeviceContract.Devices.CONTENT_URI, id);
+      if (deviceUri != null) {
+        getActivity().getContentResolver().delete(deviceUri, null, null);
+      }
     }
   }
 
