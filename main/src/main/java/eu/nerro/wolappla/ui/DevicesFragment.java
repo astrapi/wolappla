@@ -32,8 +32,8 @@ import eu.nerro.wolappla.provider.DeviceContract;
 import eu.nerro.wolappla.provider.DeviceProvider;
 
 public class DevicesFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
-  public static final int CREATE_DEVICE_ENTRY_REQUEST_CODE = 100;
-  public static final int UPDATE_DEVICE_ENTRY_REQUEST_CODE = 101;
+  public static final int CREATE_REQUEST_CODE = 100;
+  public static final int UPDATE_REQUEST_CODE = 101;
 
   private static final int URL_LOADER = 0;
   private static final int DEFAULT_DEVICE_PORT = 9;
@@ -61,7 +61,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
     switch (item.getItemId()) {
       case R.id.menu_add_device:
         Intent intent = new Intent(getActivity(), DeviceDetailActivity.class);
-        startActivityForResult(intent, CREATE_DEVICE_ENTRY_REQUEST_CODE);
+        startActivityForResult(intent, CREATE_REQUEST_CODE);
         return true;
 
       default:
@@ -137,11 +137,11 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
       value.put(DeviceContract.Devices.DEVICE_PORT, devicePort);
 
       switch (requestCode) {
-        case CREATE_DEVICE_ENTRY_REQUEST_CODE:
+        case CREATE_REQUEST_CODE:
           getActivity().getContentResolver().insert(DeviceContract.Devices.CONTENT_URI, value);
           break;
 
-        case UPDATE_DEVICE_ENTRY_REQUEST_CODE:
+        case UPDATE_REQUEST_CODE:
           break;
       }
     }
