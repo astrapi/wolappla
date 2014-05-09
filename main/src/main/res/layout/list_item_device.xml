@@ -30,7 +30,6 @@
                   android:layout_below="@id/list_item_device_name"
                   android:layout_alignParentLeft="true"
                   android:layout_alignParentRight="true"
-                  android:background="#e5e5e5"
                   android:layout_marginLeft="8dp"
                   android:layout_marginRight="8dp">
     <TextView android:id="@+id/list_item_device_mac_address"
