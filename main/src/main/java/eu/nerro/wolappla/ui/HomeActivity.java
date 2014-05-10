@@ -38,6 +38,7 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
 
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
       actionBar.setDisplayHomeAsUpEnabled(false);
+      actionBar.setDisplayUseLogoEnabled(true);
       actionBar.addTab(actionBar.newTab()
           .setText(R.string.title_devices)
           .setTabListener(this));
