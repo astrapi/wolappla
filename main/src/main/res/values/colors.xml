@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="ab_background">#3c3c3c</color>
-  <color name="ab_foreground">#dcdcdc</color>
-  <color name="background">#c0c0c0</color>
+  <!-- General -->
+  <color name="background">#e1e3e4</color>
+
+  <!-- Action bar -->
+  <color name="ab_background">#648778</color>
+  <color name="ab_foreground">#ffffff</color>
 </resources>
