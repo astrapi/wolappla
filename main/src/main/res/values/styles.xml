@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="Wolappla.Theme.Base" parent="android:Theme.Holo.Light.DarkActionBar">
+  <style name="Wolappla.Theme.Base" parent="android:Theme.Holo.Light">
   </style>
 
   <style name="Wollapla.Theme" parent="Wolappla.Theme.Base">
@@ -8,7 +8,7 @@
     <item name="android:windowBackground">@color/background</item>
   </style>
 
-  <style name="Wolappla.Theme.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+  <style name="Wolappla.Theme.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid">
     <item name="android:displayOptions">showHome|useLogo|showTitle</item>
     <item name="android:titleTextStyle">@style/Wolappla.Theme.ActionBar.Text</item>
     <item name="android:background">@color/ab_background</item>
