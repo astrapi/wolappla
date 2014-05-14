@@ -12,6 +12,7 @@
     <item name="android:displayOptions">showHome|useLogo|showTitle</item>
     <item name="android:titleTextStyle">@style/Wolappla.Theme.ActionBar.Text</item>
     <item name="android:background">@color/ab_background</item>
+    <item name="android:backgroundStacked">@color/ab_stacked_background</item>
   </style>
 
   <style name="Wolappla.Theme.ActionBar.Text" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">

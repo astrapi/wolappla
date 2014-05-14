@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <!-- General -->
-  <color name="background">#e1e3e4</color>
+  <color name="background">#e5e5e5</color>
 
   <!-- Action bar -->
   <color name="ab_background">#648778</color>
-  <color name="ab_foreground">#ffffff</color>
+  <color name="ab_foreground">#e5e5e5</color>
+  <color name="ab_stacked_background">#ffffff</color>
 </resources>
