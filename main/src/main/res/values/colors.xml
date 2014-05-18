@@ -10,6 +10,7 @@
 
   <!-- Card -->
   <color name="card_background">#4e4e4e</color>
+  <color name="card_selected_background">#9a9a9a</color>
   <color name="card_foreground">#b1b1b1</color>
   <color name="card_device_name_foreground">#ffffff</color>
 </resources>
