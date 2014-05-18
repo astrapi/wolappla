@@ -7,4 +7,9 @@
   <color name="ab_background">#648778</color>
   <color name="ab_foreground">#e5e5e5</color>
   <color name="ab_stacked_background">#ffffff</color>
+
+  <!-- Card -->
+  <color name="card_background">#4e4e4e</color>
+  <color name="card_foreground">#b1b1b1</color>
+  <color name="card_device_name_foreground">#ffffff</color>
 </resources>
