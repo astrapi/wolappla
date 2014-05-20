@@ -73,12 +73,14 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    mAdapter = new DevicesAdapter(getActivity());
-    setListAdapter(mAdapter);
-
     ListView listView = getListView();
+    listView.addHeaderView(new View(getActivity()));
+    listView.addFooterView(new View(getActivity()));
     listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
     listView.setMultiChoiceModeListener(new DeviceMultiChoiceListener(listView));
+
+    mAdapter = new DevicesAdapter(getActivity());
+    setListAdapter(mAdapter);
 
     getLoaderManager().restartLoader(URL_LOADER, null, this);
   }
