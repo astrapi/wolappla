@@ -187,7 +187,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return getActivity().getLayoutInflater().inflate(R.layout.list_item_device, parent, false);
+      return getActivity().getLayoutInflater().inflate(R.layout.list_item_device_refactored, parent, false);
     }
 
     @Override
@@ -197,10 +197,10 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
         return;
       }
 
-      final TextView nameView = (TextView) view.findViewById(R.id.list_item_device_name);
-      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_device_mac_address);
-      final TextView ipAddressView = (TextView) view.findViewById(R.id.list_item_device_ip_address);
-      final ImageButton startButton = (ImageButton) view.findViewById(R.id.list_item_device_start_button);
+      final TextView nameView = (TextView) view.findViewById(R.id.list_item_title);
+      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_subtitle);
+//      final TextView ipAddressView = (TextView) view.findViewById(R.id.list_item_device_ip_address);
+      final ImageButton startButton = (ImageButton) view.findViewById(R.id.list_item_start_icon);
 
       final String deviceName = cursor.getString(DevicesQuery.NAME);
       final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
@@ -208,7 +208,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
       nameView.setText(deviceName);
       macAddressView.setText(deviceMacAddress);
-      ipAddressView.setText(deviceIpAddress);
+//      ipAddressView.setText(deviceIpAddress);
       startButton.setFocusable(false);
     }
   }
