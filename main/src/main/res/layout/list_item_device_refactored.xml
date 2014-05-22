@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingLeft="16dp"
+             android:paddingRight="16dp"
+             android:descendantFocusability="beforeDescendants">
+
+  <!--suppress AndroidLintUselessParent -->
+  <RelativeLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@drawable/selector_card_background"
+                  android:descendantFocusability="afterDescendants">
+
+    <TextView android:id="@+id/list_item_title"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="12dp"
+              android:layout_marginLeft="18dp"
+              android:layout_alignRight="@+id/list_item_subtitle"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textSize="16sp"
+              android:textColor="@color/card_device_name_foreground"
+              android:textStyle="bold"
+              android:ellipsize="end"
+              android:text="My little server"
+      />
+
+    <TextView android:id="@+id/list_item_subtitle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/list_item_title"
+              android:layout_toLeftOf="@+id/list_item_start_icon_divider"
+              android:layout_marginLeft="18dp"
+              android:layout_marginBottom="12dp"
+              android:textAppearance="?android:textAppearanceSmall"
+              android:textColor="@color/card_foreground"
+              android:text="00:11:ff:33:ee:aa"
+             />
+
+    <View android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_below="@id/list_item_subtitle"/>
+
+    <!--suppress AndroidLintContentDescription -->
+    <ImageButton android:id="@+id/list_item_start_icon"
+                 android:layout_width="64dp"
+                 android:layout_height="64dp"
+                 android:paddingLeft="18dp"
+                 android:paddingRight="18dp"
+                 android:layout_alignParentRight="true"
+                 android:src="@drawable/list_item_start_button"
+                 style="?android:attr/borderlessButtonStyle"
+                 android:layout_alignBottom="@+id/list_item_start_icon_divider"
+                 android:layout_alignTop="@+id/list_item_start_icon_divider"/>
+
+    <View android:id="@+id/list_item_start_icon_divider"
+          android:layout_width="1dp"
+          android:layout_height="match_parent"
+          android:layout_alignTop="@+id/list_item_title"
+          android:background="@drawable/layer_card_start_icon_divider"
+          android:layout_alignBottom="@+id/list_item_subtitle"
+          android:layout_toLeftOf="@+id/list_item_start_icon"/>
+
+  </RelativeLayout>
+
+</FrameLayout>
