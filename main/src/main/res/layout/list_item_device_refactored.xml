@@ -15,6 +15,7 @@
                     android:layout_alignParentTop="true"
                     android:background="@color/card_title_background">
 
+      <!--suppress AndroidLintContentDescription -->
       <ImageButton android:id="@+id/card_item_title_actions"
                    android:layout_width="wrap_content"
                    android:layout_height="54sp"
