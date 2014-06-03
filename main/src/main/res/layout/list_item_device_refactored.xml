@@ -12,24 +12,15 @@
     <RelativeLayout android:id="@+id/card_item_title_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
                     android:background="@color/card_title_background">
 
-      <!--suppress AndroidLintContentDescription -->
-      <ImageButton android:id="@+id/card_item_title_actions"
-                   android:layout_width="wrap_content"
-                   android:layout_height="54sp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_action_play"
-                   android:background="@drawable/card_item_selector_title_actions"
-                   style="?android:attr/borderlessButtonStyle"/>
       <TextView android:id="@+id/card_item_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignTop="@id/card_item_title_actions"
-                android:layout_alignBottom="@id/card_item_title_actions"
-                android:layout_toLeftOf="@id/card_item_title_actions"
+                android:layout_toLeftOf="@+id/card_item_title_actions"
                 android:ellipsize="end"
                 android:gravity="left|center_vertical"
                 android:padding="16dp"
@@ -37,12 +28,25 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/card_title_foreground"
                 android:text="My NAS Server"/>
+      <!--suppress AndroidLintContentDescription -->
+      <ImageButton android:id="@+id/card_item_title_actions"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignTop="@id/card_item_title_text"
+                   android:layout_alignBottom="@id/card_item_title_text"
+                   android:layout_centerVertical="true"
+                   android:background="@drawable/card_item_selector_title_actions"
+                   android:src="@drawable/ic_action_play"
+                   style="?android:attr/borderlessButtonStyle"/>
+
     </RelativeLayout>
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_below="@id/card_item_title_area"
               android:text="test message"/>
+
   </RelativeLayout>
 
 </FrameLayout>
