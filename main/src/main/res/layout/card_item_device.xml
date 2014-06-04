@@ -37,15 +37,37 @@
                    android:layout_alignBottom="@id/card_item_title_text"
                    android:layout_centerVertical="true"
                    android:background="@drawable/card_item_selector_title_actions"
-                   android:src="@drawable/ic_action_play"
+                   android:src="@drawable/ic_start"
                    style="?android:attr/borderlessButtonStyle"/>
 
     </RelativeLayout>
 
-    <TextView android:layout_width="match_parent"
+    <TextView android:id="@+id/card_item_subtitle_mac_address"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentRight="true"
               android:layout_below="@id/card_item_title_area"
-              android:text="test message"/>
+              android:paddingLeft="16dp"
+              android:paddingTop="16dp"
+              android:paddingRight="16dp"
+              android:paddingBottom="8dp"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textColor="#828282"
+              android:text="11:22:ff:aa:55:66"/>
+
+    <TextView android:id="@+id/card_item_subtitle_ip_address"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentRight="true"
+              android:layout_below="@id/card_item_subtitle_mac_address"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:paddingBottom="16dp"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textColor="#828282"
+              android:text="192.168.0.255"/>
 
   </RelativeLayout>
 

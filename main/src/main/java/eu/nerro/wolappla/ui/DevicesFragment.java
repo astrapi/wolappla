@@ -187,7 +187,7 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-      return getActivity().getLayoutInflater().inflate(R.layout.list_item_device_refactored, parent, false);
+      return getActivity().getLayoutInflater().inflate(R.layout.card_item_device, parent, false);
     }
 
     @Override
@@ -197,19 +197,19 @@ public class DevicesFragment extends ListFragment implements LoaderManager.Loade
         return;
       }
 
-//      final TextView nameView = (TextView) view.findViewById(R.id.list_item_title);
-//      final TextView macAddressView = (TextView) view.findViewById(R.id.list_item_subtitle);
-//      final TextView ipAddressView = (TextView) view.findViewById(R.id.list_item_device_ip_address);
-//      final ImageButton startButton = (ImageButton) view.findViewById(R.id.list_item_start_icon);
+      final TextView nameView = (TextView) view.findViewById(R.id.card_item_title_text);
+      final TextView macAddressView = (TextView) view.findViewById(R.id.card_item_subtitle_mac_address);
+      final TextView ipAddressView = (TextView) view.findViewById(R.id.card_item_subtitle_ip_address);
+      final ImageButton startButton = (ImageButton) view.findViewById(R.id.card_item_title_actions);
 
       final String deviceName = cursor.getString(DevicesQuery.NAME);
       final String deviceMacAddress = cursor.getString(DevicesQuery.MAC_ADDRESS);
       final String deviceIpAddress = cursor.getString(DevicesQuery.IP_ADDRESS);
 
-//      nameView.setText(deviceName);
-//      macAddressView.setText(deviceMacAddress);
-//      ipAddressView.setText(deviceIpAddress);
-//      startButton.setFocusable(false);
+      nameView.setText(deviceName);
+      macAddressView.setText(deviceMacAddress);
+      ipAddressView.setText(deviceIpAddress);
+      startButton.setFocusable(false);
     }
   }
 
