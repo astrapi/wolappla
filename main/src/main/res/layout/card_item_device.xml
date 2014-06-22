@@ -1,13 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+
              android:paddingLeft="16dp"
              android:paddingRight="16dp">
 
   <!--suppress AndroidLintUselessParent -->
   <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:background="@drawable/layer_card_background">
+                  android:background="@drawable/layer_card_background"
+                  >
 
     <RelativeLayout android:id="@+id/card_item_title_area"
                     android:layout_width="match_parent"
@@ -15,7 +17,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:background="@color/card_title_background">
+                    android:background="@color/card_title_background"
+                    android:descendantFocusability="blocksDescendants">
 
       <TextView android:id="@+id/card_item_title_text"
                 android:layout_width="match_parent"
@@ -38,6 +41,8 @@
                    android:layout_centerVertical="true"
                    android:background="@drawable/card_item_selector_title_actions"
                    android:src="@drawable/ic_start"
+                   android:focusable="false"
+                   android:focusableInTouchMode="false"
                    style="?android:attr/borderlessButtonStyle"/>
 
     </RelativeLayout>
@@ -51,7 +56,7 @@
               android:paddingLeft="16dp"
               android:paddingTop="16dp"
               android:paddingRight="16dp"
-              android:paddingBottom="8dp"
+              android:paddingBottom="4dp"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:textColor="#828282"
               android:text="11:22:ff:aa:55:66"/>
